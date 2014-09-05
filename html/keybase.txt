@@ -1,0 +1,65 @@
+==================================================================
+https://keybase.io/raphaelrk
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of http://raphaelrk.com
+  * I am raphaelrk (https://keybase.io/raphaelrk) on keybase.
+  * I have a public key with fingerprint 9B7E 2A1F E99B A6DC C51D  FA6D 8CEB EA2E 6AFE E990
+
+To claim this, I am signing this object:
+
+{
+    "body": {
+        "key": {
+            "fingerprint": "9b7e2a1fe99ba6dcc51dfa6d8cebea2e6afee990",
+            "host": "keybase.io",
+            "key_id": "8cebea2e6afee990",
+            "uid": "d42326904276b49cb8c92df6223a2100",
+            "username": "raphaelrk"
+        },
+        "service": {
+            "hostname": "raphaelrk.com",
+            "protocol": "http:"
+        },
+        "type": "web_service_binding",
+        "version": 1
+    },
+    "ctime": 1407646809,
+    "expire_in": 157680000,
+    "prev": "2198cd2bd197191464fd819e83d69a8786adddea4e301d24471a6094b2787d8f",
+    "seqno": 4,
+    "tag": "signature"
+}
+
+with the aforementioned key, yielding the PGP signature:
+
+-----BEGIN PGP MESSAGE-----
+Version: Keybase OpenPGP v0.3.1
+Comment: https://keybase.io/crypto
+
+yMHlAnicO8LLzMDFuLDg1rFzvo8XMp4+8LmUIfjZn8hqpaT8lEolq2ql7FQwlZaZ
+l55aVFCUmVeiZKVkmWSeapRomJZqaZmUaJaSnGxqmJIGZFgkpyalJhqlmiWmpQLl
+DJR0lDLyi0E6gMYkJRan6mXmA8WAnPjMFKAoFvWlYIkUEyNjIzNLAxMjc7MkE8vk
+JItkS6OUNDMjI+NEI0MDsMLi1KK8xNxUoOqixIKMxNScomylWh0loHBZZnIqyNEg
+u9GV6CXn5wJ1FxTll+Qn5+cApTJKSgqsQDpLKgtASstTk+KhhsQnZealAH0O1FCW
+WlScmZ+nZGUIVJlckgky1dDEwNzMxMzCwFJHKbWiILMoNT4TpMLUHCgGBCBrUsuA
+RhoZWlokpxglpRhamhtaGpqYmaSlWBhaploYp5hZJlqYW5glpqSkpCaapBobGKYY
+mZiYGyaaGViaJBmZW5inWKQpgbxVmJevZGUCdGZiOtDI4sz0vMSS0qJUpdpDB2JY
+GBi5GNhYmUBxx8DFKQCLUbNa9r8i7tsy+ObzBflufPRIdO6aA4+ke+SUJ+2R5jXW
+PzLv7TT57xZbQ/sXnefex2Gibjg39PWjxp1iwky3u8TiJ3Tf3f9XMetCa9Si/68m
+7287VDJVmtV7/iopDuGLkyVtzvkVCdqJvw856G8kzXLsWVZRru7Vs7WXPpycZfVP
+8LvIAsteDXf+4JxDzbWh+zffk/7F+Uj5VtTaDhnbi41TnM7F3+63d1xgH7L0XJmQ
+1Qpj5ZaKH/rn2r9+mlnDeGHzDM/YfzIbuUVmnrjwb82b6KyXEjP4ln26kXrh4h7v
+hhr968ZdIeoTXFzYsqceKZMSrtiz+hfTNZbagOkeF6cfs7I5MX16wA3lnaJTtPaq
+hdoBAOFeFxo=
+=411H
+-----END PGP MESSAGE-----
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/raphaelrk
+
+==================================================================

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Signup</title>
+		<style type="text/css">
+			.label {text-align: right}
+			.error {color: red}
+		</style>
+		<meta charset="utf-8"> 
+	</head>
+
+	<body>
+		<h1>Signup</h1>
+		<form method="POST">
+			<table>
+				<tbody>
+					<tr>
+						<td class="label">Username</td>
+						<td><input type="text" name="username" value="%(user)s"></td>
+						<td class="error">%(userErr)s</td>
+					</tr>
+					<tr>
+						<td class="label">Password</td>
+						<td><input type="password" name="password"></td>
+						<td class="error">%(passErr)s</td>
+					</tr>
+					<tr>
+						<td class="label">Verify Password</td>
+						<td><input type="password" name="verify"></td>
+						<td class="error">%(verifyErr)s</td>
+					</tr>
+					<tr>
+						<td class="label">Email (optional)</td>
+						<td><input type="email" name="email" value="%(email)s"></td>
+						<td class="error">%(emailErr)s</td>
+					</tr>
+				</tbody>
+			</table>
+			<input type="submit">
+		</form>
+		
+	</body>
+</html>

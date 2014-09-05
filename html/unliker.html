@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Facebook page unliker</title>
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	</head>
+	<body>
+		<div id="fb-root"></div>
+		<script>
+	      window.fbAsyncInit = function() {
+	        FB.init({
+	          appId      : 1477300689178373,
+	          xfbml      : true,
+	          version    : 'v2.0'
+	        });
+	      };
+
+	      function post(path, params, method) {
+		    method = method || "post"; // Set method to post by default if not specified.
+
+		    var form = document.createElement("form");
+		    form.setAttribute("method", method);
+		    form.setAttribute("action", path);
+
+		    for(var key in params) {
+		        if(params.hasOwnProperty(key)) {
+		            var hiddenField = document.createElement("input");
+		            hiddenField.setAttribute("type", "hidden");
+		            hiddenField.setAttribute("name", key);
+		            hiddenField.setAttribute("value", params[key]);
+
+		            form.appendChild(hiddenField);
+		         }
+		    }
+
+		    document.body.appendChild(form);
+		    form.submit();
+		  }
+
+	      loginAndDoStuff = function() {
+			FB.login(function(){
+				FB.api("/" + FB.getUserID() + "/likes?limit=10", function (response) {
+					console.log(response);
+
+					var item_ids = response.data[0].id;
+
+					for(var i = 1; i < response.data.length; i++) {
+						var item_id = response.data[i].id;
+						item_ids += ',' + item_id;
+						//document.body.innerHTML += '<div class="fb-like-box" data-href="https://www.facebook.com/' + item_id + '" data-colorscheme="light" data-show-faces="false" data-header="false" data-stream="false" data-show-border="false"></div>';
+						//FB.api("http://graph.facebook.com/" + item_id + "/likes", "DELETE", function(r){console.log(r);});
+
+					}
+
+					post('/unliker', {urls: item_ids});
+				});
+			}, {scope: 'user_likes,publish_actions'});
+		  };
+
+	      (function(d, s, id){
+	         var js, fjs = d.getElementsByTagName(s)[0];
+	         if (d.getElementById(id)) {return;}
+	         js = d.createElement(s); js.id = id;
+	         js.src = "https://connect.facebook.net/en_US/sdk.js";
+	         fjs.parentNode.insertBefore(js, fjs);
+	       }(document, 'script', 'facebook-jssdk'));
+	    </script>
+
+	    <p>
+	    	WIP
+	    	<button onclick="loginAndDoStuff()">Do stuff</button>
+	    </p>
+
+	    %(divs)s
+
+	    <script type="text/javascript">
+	    	var x = '';
+	    	var y = '';
+	    	var iFrame = '';
+
+	    	$('iframe').load(function() {
+	    		var src =  $(this).attr('src');
+	    		if (src.indexOf('plugins/like.php') > 0) {
+	    			iFrame = $(this);
+	    		}
+	    	});
+
+	    	$(document).mousemove(function(e){
+	    		// get mouse coordinates
+	    		x = e.pageX;
+	    		y = e.pageY;
+
+	    		if (iFrame != '') {
+	    			// calculate iFrame coordinates
+	    			var offTop = y-10;
+	    			var offLeft = x-25;
+
+	    			// set iFrame coordinates
+	    			$(iFrame).offset({ top: offTop, left: offLeft });
+	    		}
+	    	});
+	    </script>
+	</body>
+
+	
+</html>
