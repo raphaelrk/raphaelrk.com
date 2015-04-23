@@ -10,12 +10,44 @@
 		<link rel="stylesheet" href="css/normalize.css">
         <link rel="stylesheet" href="css/main.css">
         <link rel="stylesheet" href="css/mystyle.css">
+
+        
+		<script type="text/javascript">
+	        var wideBrowserWidth = 1440;
+	        // http://littlesvr.ca/grumble/2012/06/02/scalable-html-canvas-processing-js-sketch/
+	        function resizeCanvas()
+	        {
+	            if(window.innerWidth > wideBrowserWidth) {
+	                Processing.getInstanceById("tetris").size(window.innerWidth, window.innerHeight);
+	                Processing.getInstanceById("tetris").scale(1, 1);
+	            } else {
+	                Processing.getInstanceById("tetris").size(window.innerWidth * 3/4, window.innerHeight);
+	                Processing.getInstanceById("tetris").scale(1, 1);
+	            }
+	        }
+
+	        // variables necessary in sketch
+	        var mouse_x = 0;
+	        var frame_rate = 10;
+	    </script>
+		<style>
+		#tetris_div {
+			position:fixed;
+			top: 0px;
+			left: 0px;
+			width: 100%;
+			height:100%;
+			z-index: -1;
+		}
+		</style>
 	</head>
-	<body>
+	<body onload="resizeCanvas();" onresize="resizeCanvas();">
+		
 		<div id="wrap">
 			<h1>Raphael Rouvinov-Kats</h1>
 			
 			<p style="font-family:Tahoma,sans-serif; font-size: 18px">Hi, I'm Raphael.</p>
+
 			<h2>Links</h2>
 			<ul>
 				<li><a href="https://github.com/raphaelrk">GitHub<a></li>
@@ -44,10 +76,13 @@
 					Founder of <a href="http://www.mhsbyte.org">Byte Club</a>, my school's programming club.
 				</li>
 				<li>
+					Co-founder of <a href="http://delaze.me">Delaze</a>, a virtual reality app that treats lazy eye in people of all ages. Made first at MHacks IV where it won the prize for "Most Innovative."
+				</li>
+				<li>
 					<a href="https://www.khanacademy.org/profile/raphaelrk/">KhanAcademy (processing.js) programs.</a> You can find me working on these at basically any hour of the night. I'm working on porting some of the more interesting ones to this site. Things I have there range from mathy to artsy to gamey. I have a flappy bird clone, a LUDUM Dare entry, 17 fractals, function documentation for beginners, a (from scratch, completely with 2d functions) cube runner clone, and lots more.
 				</li>
 				<li>
-					Lead programmer of school's FIRST Robotics team. Entails writing code for the main competition robot (Java), arduino code for our quadcopter, and anything else that gets thrown my way (easyC, LabView, etc.)
+					Programmer at school's FIRST Robotics team. Entails writing code for the main competition robot (Java), arduino code for our quadcopter, and anything else that gets thrown my way (easyC, LabView, etc.)
 				</li>
 				<li>
 					TI-84 programs. I have over 140 on my calculator, most written by me, spanning from games to math. Programs include pacman, tetris, 2048, 3D cube viewer, root/intersection finders, f(x,y) graphers, slope field graphers/undoers, polynomial division, project euler-type programs, basically anything that could pass time in math class or assist me in a math competition.
@@ -71,6 +106,9 @@
 				<li>
 					Challenge Accepted, an iOS and Android app that lets people post and accept challenges with optional bounties. The unfishished Android version is <a href="https://github.com/Rickcush/ChallengeAcceptedAndroid">on GitHub</a>, while the functional and polished iOS version isn't online. Won top overall at Codeday Chicago!
 				</li>
+				<li>
+					Delaze, virtual reality app using Google Cardboard that treats lazy eye in all ages. Won "Most Innovative" at MHacks IV. <a href="http://delaze.me">Website</a>. <a href="https://github.com/raphaelrk/delaze">Github</a>.
+				</li>
 			</ul>
 			
 			<h2>Fun stuff</h2>
@@ -88,6 +126,66 @@
 					<a href="/rot13">Rot13</a>
 				</li>
 			</ul>
+
+			<footer>
+				<p>Last updated: Fall 2014</p>
+			</footer>
 		</div>
+
+		
+
+		<div id="tetris_div">
+			<canvas id="tetris" class="processingcanvas" data-processing-sources="pjs_sketches/tetris/tetris.pde pjs_sketches/tetris/TetrisModel.pde pjs_sketches/tetris/TetrisDrawer.pde pjs_sketches/tetris/Block.pde pjs_sketches/tetris/GameState.pde pjs_sketches/tetris/Key.pde"></canvas>
+		</div>
+
+		<script src="js/libs/processing-1.1.0.min.js"></script>
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+		<!-- script for canvas: handles redraw and mouse clicking/movement -->
+		<script type="text/javascript">
+            var canvas = document.getElementById('tetris');
+            
+            (function() {
+                window.onmousemove = handleMouseMove;
+                function handleMouseMove(event) {
+                    event = event || window.event; // IE-ism
+                    mouse_x = event.clientX;
+                    // event.clientX and event.clientY contain the mouse position
+                }
+            })();
+
+            (function() {
+                window.onmouseup = handleMouseUp;
+                function handleMouseUp(event) {
+                    event = event || window.event; // IE-ism
+                    tet = Processing.getInstanceById('tetris');
+                    tet.mouseReleased();
+                    // event.clientX and event.clientY contain the mouse position
+                }
+            })();
+
+            var drawInterval = setInterval(function(){
+                if(window.innerWidth > wideBrowserWidth) {
+                    $('#tetris_div').css({
+                        'background-image' : 'url(' + canvas.toDataURL("image/png") + ')',
+                        'position': 'absolute',
+                        'top': '0px',
+                        'left': '0px',
+                        'width': '100%',
+                        'height':'100%',
+                        'z-index': '2'
+                    });
+                } else {
+                    $('#tetris_div').css({
+                        'background-image' : 'none',
+                        'position': 'relative',
+                        'left': '-' + $('#tetris').position().left/2 + 'px',
+                        'width': '100%',
+                        'height': '100%',
+                        'z-index': '100'
+                    });
+                }
+            },1000/frame_rate);
+        </script>
 	</body>
 </html>
